@@ -28,14 +28,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // Redirect berdasarkan role setelah login
-        $user = $request->user();
-
-        if ($user->isAdmin()) {
-            return redirect()->intended('/admin');
-        }
-
-        return redirect()->intended('/beranda');
+        return redirect()->intended(route('home'));
     }
 
     /**

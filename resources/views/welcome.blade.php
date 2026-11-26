@@ -19,12 +19,12 @@
                     </h1>
 
                     <p class="mt-4 text-lg text-blue-200">
-                        Mari berpartisipasi dalam menentukan pemimpin terbaik untuk masa depan CSSMoRA yang lebih baik.
+                        {{ $pengaturan['deskripsi_hero'] ?? 'Mari berpartisipasi dalam menentukan pemimpin terbaik untuk masa depan CSSMoRA yang lebih baik.' }}
                     </p>
 
                     <a href="{{ route('pilih.index') }}" class="mt-6 inline-flex items-center rounded-full bg-accent-lime px-6 py-3 text-sm font-bold text-primary-dark shadow-lg hover:bg-lime-400 transition">
                         <svg class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>
-                        Mulai Memilih &rarr;
+                        {{ $pengaturan['teks_tombol'] ?? 'Mulai Memilih' }} &rarr;
                     </a>
                 </div>
 
@@ -36,7 +36,7 @@
                         <div class="absolute -bottom-8 -right-8 flex h-24 w-24 items-center justify-center rounded-xl bg-blue-800/50 backdrop-blur">
                             <div class="text-center">
                                 <svg class="mx-auto h-8 w-8 text-accent-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21" /></svg>
-                                <p class="mt-1 text-[10px] font-bold uppercase tracking-wider">CSSMoRA 2027</p>
+                                <p class="mt-1 text-[10px] font-bold uppercase tracking-wider">{{ $pengaturan['nama_organisasi'] ?? 'CSSMoRA' }}</p>
                             </div>
                         </div>
                         <p class="mt-12 text-center text-xs font-bold uppercase tracking-widest text-blue-300">Satu Anggota / Satu Suara</p>
@@ -111,10 +111,10 @@
         <div class="mb-8 text-center">
             <div class="flex items-center justify-center space-x-2">
                 <div class="h-px w-12 bg-accent-lime"></div>
-                <h2 class="text-2xl font-bold text-slate-900">Daftar Kandidat</h2>
+                <h2 class="text-2xl font-bold text-slate-900">{{ $pengaturan['judul_kandidat'] ?? 'Daftar Kandidat' }}</h2>
                 <div class="h-px w-12 bg-accent-lime"></div>
             </div>
-            <p class="mt-2 text-sm text-slate-500">Kenali visi dan misi para kandidat sebelum memberikan suara Anda.</p>
+            <p class="mt-2 text-sm text-slate-500">{{ $pengaturan['deskripsi_kandidat'] ?? 'Kenali visi dan misi para kandidat sebelum memberikan suara Anda.' }}</p>
         </div>
 
         <div class="grid gap-6 md:grid-cols-2">
@@ -179,7 +179,7 @@
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="flex items-center text-lg font-bold text-slate-900">
                         <svg class="mr-2 h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46" /></svg>
-                        Pengumuman Terbaru
+                        {{ $pengaturan['judul_pengumuman'] ?? 'Pengumuman Terbaru' }}
                     </h3>
                     <a href="#" class="text-xs font-semibold text-blue-600 hover:underline">Lihat Semua &rarr;</a>
                 </div>
@@ -190,6 +190,7 @@
                             <div>
                                 <p class="text-sm font-semibold text-slate-900">{{ $pengumuman['judul'] }}</p>
                                 <p class="text-xs text-slate-500">{{ \Carbon\Carbon::parse($pengumuman['dipublikasikan_pada'])->translatedFormat('d M Y') }}</p>
+                                <p class="mt-1 line-clamp-2 text-xs text-slate-600">{{ $pengumuman['isi'] }}</p>
                             </div>
                         </div>
                     @empty
@@ -204,8 +205,9 @@
                     <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-lime/20 mb-4">
                         <svg class="h-6 w-6 text-accent-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                     </div>
-                    <h3 class="text-xl font-bold">Suara Anda, Masa Depan CSSMoRA</h3>
-                    <p class="mt-2 text-sm text-blue-200">Bersama kita wujudkan organisasi yang lebih baik dan berdampak.</p>
+                    <h3 class="text-xl font-bold">{{ $pengaturan['judul_cta'] ?? 'Suara Anda, Masa Depan CSSMoRA' }}</h3>
+                    <p class="mt-2 text-sm text-blue-200">{{ $pengaturan['deskripsi_cta'] ?? 'Bersama kita wujudkan organisasi yang lebih baik dan berdampak.' }}</p>
+                    <p class="mt-4 text-xs text-blue-200/80">{{ $pengaturan['catatan_panitia'] ?? '' }}</p>
                 </div>
             </div>
         </div>

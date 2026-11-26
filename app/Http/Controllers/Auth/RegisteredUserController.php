@@ -32,14 +32,18 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'nia_pbsb' => ['required', 'string', 'max:32', 'alpha_dash', 'unique:users,nia_pbsb'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'nia_pbsb' => $request->nia_pbsb,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'pemilih',
+            'sudah_memilih' => false,
         ]);
 
         event(new Registered($user));
