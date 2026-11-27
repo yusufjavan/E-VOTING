@@ -12,6 +12,7 @@ use App\Repositories\KandidatRepository;
 use App\Repositories\PemilihRepository;
 use App\Repositories\PengaturanRepository;
 use App\Repositories\PengumumanRepository;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -33,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer(['components.footer', 'components.navbar'], function ($view): void {
+            $view->with('siteSettings', app(PengaturanRepository::class)->semua());
+        });
     }
 }

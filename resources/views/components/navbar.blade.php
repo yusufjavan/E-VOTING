@@ -9,7 +9,7 @@
                     </svg>
                 </div>
                 <div>
-                    <p class="text-sm font-bold leading-tight">CSSMoRA</p>
+                    <p class="text-sm font-bold leading-tight">{{ $siteSettings['nama_organisasi'] ?? 'CSSMoRA' }}</p>
                     <p class="text-[10px] uppercase tracking-wider text-blue-300">E-Voting Portal</p>
                 </div>
             </div>
@@ -44,15 +44,21 @@
 
             {{-- User Menu --}}
             <div class="hidden md:flex items-center space-x-3">
+                @auth
                 <div class="flex items-center space-x-2 rounded-full bg-white/10 px-4 py-2">
                     <svg class="h-5 w-5 text-accent-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
-                    <span class="text-sm font-medium">Halo, Ahmad Fauzi</span>
+                    <span class="text-sm font-medium">Halo, {{ Auth::user()->name }}</span>
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
                 </div>
-                <a href="#" class="flex items-center space-x-1 rounded-full bg-white/20 px-4 py-2 text-sm font-medium hover:bg-white/30 transition">
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" /></svg>
-                    <span>Logout</span>
-                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="flex items-center space-x-1 rounded-full bg-white/20 px-4 py-2 text-sm font-medium transition hover:bg-white/30">
+                        <span>Logout</span>
+                    </button>
+                </form>
+                @else
+                    <a href="{{ route('login') }}" class="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold hover:bg-white/20">Login</a>
+                @endauth
             </div>
 
             {{-- Mobile menu button --}}
@@ -69,5 +75,13 @@
         <a href="{{ route('home') }}" class="block rounded-lg px-3 py-2 text-sm {{ request()->routeIs('home') ? 'bg-accent-lime text-primary-dark font-semibold' : 'text-white hover:bg-white/10' }}">Beranda</a>
         <a href="{{ route('daftar-kandidat') }}" class="block rounded-lg px-3 py-2 text-sm {{ request()->routeIs('daftar-kandidat') ? 'bg-accent-lime text-primary-dark font-semibold' : 'text-white hover:bg-white/10' }}">Daftar Kandidat</a>
         <a href="{{ route('pilih.index') }}" class="block rounded-lg px-3 py-2 text-sm {{ request()->routeIs('pilih.*') ? 'bg-accent-lime text-primary-dark font-semibold' : 'text-white hover:bg-white/10' }}">Pilih Kandidat</a>
+        @auth
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button class="block w-full rounded-lg px-3 py-2 text-left text-sm text-white hover:bg-white/10">Logout</button>
+            </form>
+        @else
+            <a href="{{ route('login') }}" class="block rounded-lg px-3 py-2 text-sm text-white hover:bg-white/10">Login</a>
+        @endauth
     </div>
 </nav>

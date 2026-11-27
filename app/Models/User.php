@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password', 'role', 'sudah_memilih'])]
+#[Fillable(['name', 'nia_pbsb', 'email', 'password', 'role', 'sudah_memilih'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -31,11 +31,6 @@ class User extends Authenticatable
     }
 
     /* ───── Helpers ───── */
-
-    public function isAdmin(): bool
-    {
-        return $this->role === 'admin';
-    }
 
     public function isPemilih(): bool
     {

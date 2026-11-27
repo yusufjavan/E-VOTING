@@ -9,6 +9,12 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
+        <div class="mt-4">
+            <x-input-label for="nia_pbsb" value="NIA PBSB" />
+            <x-text-input id="nia_pbsb" class="block mt-1 w-full" type="text" name="nia_pbsb" :value="old('nia_pbsb')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('nia_pbsb')" class="mt-2" />
+        </div>
+
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
