@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
         // NIA PBSB: 2026000001
         // Password: password
         // Role: pemilih
+        //
 
         // 10 Pemilih contoh — termasuk akun demo "Ahmad Fauzi"
         $pemilih = [
